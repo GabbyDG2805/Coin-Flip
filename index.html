@@ -13,13 +13,62 @@
 	</style>
 	<body>
 		<h1>Coin Flip</h1>
-		<!-- About 0.02% (0.167) chance of landing on side -->
+		<!-- 1 in 6000 (0.0167%/about 0.02%) chance of landing on side -->
 
-		<p id="number"></p>
+		<p>You got: <span id="test"></p>
+
+		<img id=coinImage src="images/coin_heads.jpg" style="width:30%"><br>
+
+		<button id="btn" type="button">Flip Coin</button>
 
 		<script>
-		document.getElementById("number").innerHTML =
-		Math.floor(Math.random() * 100);
+		document.getElementById('btn').onclick = click;
+
+		function click ()
+		{
+			//Get result of coin flip
+			let result_of_coin_flip = getCoinFlipResult();
+
+			//show result of coin flip
+			showCoinFlipResult(result_of_coin_flip);
+
+			//store result of coin flip
+		}
+
+		function getCoinFlipResult ()
+		{
+			result = Math.floor(Math.random() * 12000);
+
+			if (result <= 5998) {
+				side = "heads";
+			} else if (result >= 5999 && result < 11998) {
+				side = "tails";
+			} else if (result == 11998 || result == 11999) {
+				side = "side";
+			} else {
+				document.getElementById("test").innerHTML = "Error";
+			}
+
+			console.log(result);
+
+			return side;
+		}
+
+		function showCoinFlipResult(side)
+		{
+			document.getElementById("test").innerHTML = side;
+			if (side == "heads") {
+				document.getElementById('coinImage').src='images/coin_heads.jpg';
+			} else if (side == "tails") {
+				document.getElementById('coinImage').src='images/coin_tails.jpg';
+			} else if (side == "side") {
+				document.getElementById('coinImage').src='images/coin_side.jpg';
+			} else {
+				document.getElementById("test").innerHTML = "Error";
+			}
+		}
+
+
 		</script>
 	</body>
 </html>
