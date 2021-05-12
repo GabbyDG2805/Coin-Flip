@@ -16,6 +16,7 @@
 		<!-- 1 in 6000 (0.0167%/about 0.02%) chance of landing on side -->
 
 		<p>You got: <span id="test"></p>
+		<p>At: <span id="time"></p>
 
 		<img id=coinImage src="images/coin_heads.jpg" style="width:30%"><br>
 
@@ -48,6 +49,10 @@
 			} else {
 				document.getElementById("test").innerHTML = "Error";
 			}
+
+			var d = new Date();
+
+			document.getElementById('time').innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 
 			console.log(result);
 
