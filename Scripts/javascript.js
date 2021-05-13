@@ -15,38 +15,46 @@ $(document).ready(function(){
 
 	function getCoinFlipResult ()
 	{
-		result = Math.floor(Math.random() * 12000);
+		let random = Math.floor(Math.random() * 12000);
+		let side = "";
+		let date = new Date();
 
-		if (result <= 5998) {
+		if (random <= 5998) {
 			side = "heads";
-		} else if (result >= 5999 && result < 11998) {
+		} else if (random >= 5999 && random < 11998) {
 			side = "tails";
-		} else if (result == 11998 || result == 11999) {
+		} else if (random == 11998 || random == 11999) {
 			side = "side";
 		} else {
 			document.getElementById("test").innerHTML = "Error";
 		}
 
-		var d = new Date();
+		console.log(random);
 
-		document.getElementById('time').innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+		let result = {
+			side: side,
+			date: date
+		};
 
-		console.log(result);
+		//console.log(result);
 
-		return side;
+		return result;
 	}
 
-	function showCoinFlipResult(side)
+	function showCoinFlipResult(result)
 	{
-		document.getElementById("test").innerHTML = side;
-		if (side == "heads") {
+		console.log(result);
+		document.getElementById("test").innerHTML = result.side;
+		if (result.side == "heads") {
 			document.getElementById('coinImage').src='images/coin_heads.jpg';
-		} else if (side == "tails") {
+		} else if (result.side == "tails") {
 			document.getElementById('coinImage').src='images/coin_tails.jpg';
-		} else if (side == "side") {
+		} else if (result.side == "side") {
 			document.getElementById('coinImage').src='images/coin_side.jpg';
 		} else {
 			document.getElementById("test").innerHTML = "Error";
 		}
+
+		document.getElementById('time').innerHTML = result.date.getHours() + ":" + result.date.getMinutes() + ":" + result.date.getSeconds();
 	}
 });
