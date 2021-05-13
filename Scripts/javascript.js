@@ -2,15 +2,19 @@ $(document).ready(function(){
 
 	document.getElementById('btn').onclick = click;
 
+	var log = [];
+
 	function click ()
 	{
 		//Get result of coin flip
 		let result_of_coin_flip = getCoinFlipResult();
+		//could move array push to here and get rid of function
 
 		//show result of coin flip
 		showCoinFlipResult(result_of_coin_flip);
 
 		//store result of coin flip
+		storeCoinFlipResult(result_of_coin_flip);
 	}
 
 	function getCoinFlipResult ()
@@ -43,7 +47,7 @@ $(document).ready(function(){
 
 	function showCoinFlipResult(result)
 	{
-		console.log(result);
+		//console.log(result);
 		document.getElementById("test").innerHTML = result.side;
 		if (result.side == "heads") {
 			document.getElementById('coinImage').src='images/coin_heads.jpg';
@@ -52,9 +56,15 @@ $(document).ready(function(){
 		} else if (result.side == "side") {
 			document.getElementById('coinImage').src='images/coin_side.jpg';
 		} else {
-			document.getElementById("test").innerHTML = "Error";
+			document.getElementById('test').innerHTML = "Error";
 		}
 
 		document.getElementById('time').innerHTML = result.date.getHours() + ":" + result.date.getMinutes() + ":" + result.date.getSeconds();
+	}
+	function storeCoinFlipResult(result)
+	{
+		console.log(result);
+		log.push([result]);
+		console.log(log);
 	}
 });
